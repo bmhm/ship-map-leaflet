@@ -1,8 +1,8 @@
 <template>
 <div>
-  <component-two
+  <DatesChange
     @CustomeEventDateChange = "changeDate">
-  </component-two>
+  </DatesChange>
   <v-map class="a" :zoom=10 :center="initialLocation">
     <v-icondefault></v-icondefault>
     <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
