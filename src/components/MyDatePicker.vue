@@ -27,6 +27,7 @@
 </template>
 
 <script>
+
   export default {
     data() {
       return {
@@ -43,7 +44,7 @@
               const end = new Date();
               const start = new Date(new Date().getFullYear(), 0);
               picker.$emit('pick', [start, end]);
-              console.log('CLICKING THIS YEAR: ' + toString(this.value2));
+              console.log('CLICKING THIS YEAR: ', this.value2);
             }
           }, {
             text: 'Last 6 months',
@@ -57,7 +58,8 @@
           }]
         },
         value1: '',
-        value2: ''
+        value2: '',
+        
       };
     }
   };

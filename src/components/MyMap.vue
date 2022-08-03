@@ -1,12 +1,5 @@
 <template>
   <v-map class="a" :zoom=10 :center="initialLocation">
-    <el-date-picker
-      v-model="value1"
-      type="daterange"
-      range-separator="To"
-      start-placeholder="Start date"
-      end-placeholder="End date">
-    </el-date-picker>
     <v-icondefault></v-icondefault>
     <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
     <v-marker-cluster :options="clusterOptions" @clusterclick="click()" @ready="ready">
@@ -18,7 +11,6 @@
 </template>
 
 <script>
-import ElementUI from 'element-ui';
 import * as Vue2Leaflet from 'vue2-leaflet'
 import { latLng, Icon, icon } from 'leaflet'
 import Vue2LeafletMarkercluster from 'vue2-leaflet-markercluster'
@@ -29,17 +21,11 @@ import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png'
 
 import elasticQueryDate from './elastic_date.js';
 
-/*function rand(n) {
-  let max = n + 0.1
-  let min = n - 0.1
-  return Math.random() * (max - min) + min;
-}
-*/
+
 
 export default {
   name: 'MyMap',
   components: {
-    'el-date-picker': ElementUI.DatePicker,
     'v-map': Vue2Leaflet.LMap,
     'v-tilelayer': Vue2Leaflet.LTileLayer,
     'v-icondefault': Vue2Leaflet.LIconDefault,
@@ -55,34 +41,6 @@ export default {
       });
     }, 5000);
     this.pullElastic();
-
-    return {
-        pickerOptions: {
-          shortcuts: [{
-            text: 'This month',
-            onClick(picker) {
-              picker.$emit('pick', [new Date(), new Date()]);
-            }
-          }, {
-            text: 'This year',
-            onClick(picker) {
-              const end = new Date();
-              const start = new Date(new Date().getFullYear(), 0);
-              picker.$emit('pick', [start, end]);
-            }
-          }, {
-            text: 'Last 6 months',
-            onClick(picker) {
-              const end = new Date();
-              const start = new Date();
-              start.setMonth(start.getMonth() - 6);
-              picker.$emit('pick', [start, end]);
-            }
-          }]
-        },
-        value1: '',
-        value2: '',
-      };
   },
   methods: {
     click: (e) => console.log("clusterclick", e),
