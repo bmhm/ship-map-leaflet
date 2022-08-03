@@ -1,4 +1,8 @@
 <template>
+<div>
+  <component-two
+    @CustomeEventDateChange = "changeDate">
+  </component-two>
   <v-map class="a" :zoom=10 :center="initialLocation">
     <v-icondefault></v-icondefault>
     <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
@@ -8,6 +12,7 @@
       </v-marker>
     </v-marker-cluster>
   </v-map>
+</div>
 </template>
 
 <script>
@@ -20,7 +25,7 @@ import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png'
 
 
 import elasticQueryDate from './elastic_date.js';
-
+import DatesChange from './MyDatePicker.vue'
 
 
 export default {
@@ -31,7 +36,8 @@ export default {
     'v-icondefault': Vue2Leaflet.LIconDefault,
     'v-marker': Vue2Leaflet.LMarker,
     'v-popup': Vue2Leaflet.LPopup,
-    'v-marker-cluster': Vue2LeafletMarkercluster
+    'v-marker-cluster': Vue2LeafletMarkercluster,
+     DatesChange,
   },
   mounted() {
     setTimeout(() => {
@@ -66,6 +72,9 @@ export default {
         //console.log(record._source.data.Latitude + record._source.data.Longitude + record._source.data.VesselName)
       });
       console.log('FINISH ASYNC!!')
+    },
+    changeDates (value1){
+      this.value1 = value1;
     }
   },
   data () {

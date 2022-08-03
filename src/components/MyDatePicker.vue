@@ -7,7 +7,8 @@
       type="monthrange"
       range-separator="To"
       start-placeholder="Start month"
-      end-placeholder="End month">
+      end-placeholder="End month"
+      @change = "fireEventToParent">
     </el-date-picker>
   </div>
   <div class="block">
@@ -20,6 +21,7 @@
       range-separator="To"
       start-placeholder="Start month"
       end-placeholder="End month"
+      @change = "fireEventToParent"
       :picker-options="pickerOptions">
     </el-date-picker>
   </div>
@@ -29,6 +31,7 @@
 <script>
 
   export default {
+    name: "DatesChange",
     data() {
       return {
         pickerOptions: {
@@ -59,8 +62,14 @@
         },
         value1: '',
         value2: '',
+        //input_two: '2022-01-02T00:00:00Z'
         
       };
+    },
+    methods: {
+      fireEventToParent() {
+        this.$emit('CustomEventDateChanged', this.value1)
+      }
     }
   };
 </script>
