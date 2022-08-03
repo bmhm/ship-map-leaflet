@@ -1,9 +1,9 @@
 <template>
-<div>
-  <DatesChange
+
+  <v-map class="a" :zoom=10 :center="initialLocation">
+    <DatesChange
     @CustomeEventDateChange = "changeDate">
   </DatesChange>
-  <v-map class="a" :zoom=10 :center="initialLocation">
     <v-icondefault></v-icondefault>
     <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
     <v-marker-cluster :options="clusterOptions" @clusterclick="click()" @ready="ready">
@@ -12,7 +12,6 @@
       </v-marker>
     </v-marker-cluster>
   </v-map>
-</div>
 </template>
 
 <script>
