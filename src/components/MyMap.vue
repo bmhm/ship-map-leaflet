@@ -73,8 +73,9 @@ export default {
       });
       console.log('FINISH ASYNC!!')
     },
-    changeDates (value1){
-      this.value1 = value1;
+    changeDates (data){
+      this.value1 = data.value1;
+      this.value2 = data.value2;
     }
   },
   data () {

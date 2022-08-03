@@ -68,7 +68,7 @@
     },
     methods: {
       fireEventToParent() {
-        this.$emit('CustomEventDateChanged', this.value1)
+        this.$emit('CustomEventDateChanged', [this.value1, this.value2]);
       }
     }
   };
