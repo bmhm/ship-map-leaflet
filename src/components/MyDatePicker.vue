@@ -39,7 +39,7 @@
             text: 'This month',
             onClick(picker) {
               picker.$emit('pick', [new Date(), new Date()]);
-              console.log('CLICKING THIS MONTH: ' + toString(this.value2));
+              //console.log('CLICKING THIS MONTH: ' + toString(this.value2));
             }
           }, {
             text: 'This year',
@@ -47,7 +47,7 @@
               const end = new Date();
               const start = new Date(new Date().getFullYear(), 0);
               picker.$emit('pick', [start, end]);
-              console.log('CLICKING THIS YEAR: ', this.value2);
+              //console.log('CLICKING THIS YEAR: ', this.value2);
             }
           }, {
             text: 'Last 6 months',
@@ -56,7 +56,7 @@
               const start = new Date();
               start.setMonth(start.getMonth() - 6);
               picker.$emit('pick', [start, end]);
-              console.log('CLICKING LAST 6 MONTHS: ' + toString(this.value2));
+              //console.log('CLICKING LAST 6 MONTHS: ' + toString(this.value2));
             }
           }]
         },
@@ -68,6 +68,7 @@
     methods: {
       fireEventToParent() {
         this.$emit('CustomEventDatesChanged', [this.value1, this.value2]);
+        console.log('EMITTING DATES TO APP')
       }
     }
   };

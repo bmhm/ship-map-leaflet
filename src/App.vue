@@ -1,13 +1,10 @@
 <template>
   <div id="app">
-    <div
-     @LocationsChange="pullElastic($event)">
-     </div>
     <nav-bar />
     <my-time-picker />
     <my-map :mapdata="mapdata"></my-map>/>
     <DatesChange
-      @CustomeEventDatesChange = "changeDates">
+      @CustomEventDatesChanged = "pullElastic($event)">
     </DatesChange>
   </div>
 </template>
@@ -31,21 +28,16 @@ export default {
     DatesChange,
   },
   mounted() {
-    this.pullElastic();
+    //this.pullElastic();
   },
    methods: {
-    changeDates (data){
-      this.value1 = data.value1;
-      this.value2 = data.value2;
-    },
-    
-    async pullElastic () {
+     async pullElastic(event) {
       console.log ('ENTER ASYNC!!!')
       //let startdate = '2022-01-02T00:00:00Z'
       //let enddate = '2022-01-02T00:00:02Z'
       //console.log('heres the dates ' + this.value1.start + ' ' + this.value2)
-      let startdate = this.value1
-      let enddate = this.value1
+      let startdate = event.value1[0]
+      let enddate = event.value1[0]
       const resp = await elasticQueryDate('ais_v7', startdate, enddate)
       let i = 0;
       let locations = [];
@@ -61,9 +53,7 @@ export default {
         //console.log(record._source.data.Latitude + record._source.data.Longitude + record._source.data.VesselName)
       });
       console.log('FINISH ASYNC!!')
-    },
-    LocationsChange(){
-      this.mapdata = this.locations;
+      this.mapdata = locations;
     }
   }
 }

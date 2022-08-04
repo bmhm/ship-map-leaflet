@@ -6,7 +6,7 @@
 <script>
 import VueNavigationBar from 'vue-navigation-bar';
 import 'vue-navigation-bar/dist/vue-navigation-bar.css';
-import brandImage from '../../src/assets/lockup-color.png';
+import brandImage from '../../src/assets/niwc.png';
 
 
 export default {
