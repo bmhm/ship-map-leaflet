@@ -1,9 +1,5 @@
 <template>
-
   <v-map class="a" :zoom=10 :center="initialLocation">
-    <DatesChange
-    @CustomeEventDateChange = "changeDate">
-  </DatesChange>
     <v-icondefault></v-icondefault>
     <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
     <v-marker-cluster :options="clusterOptions" @clusterclick="click()" @ready="ready">
@@ -22,13 +18,9 @@ import iconUrl from 'leaflet/dist/images/marker-icon.png'
 import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
 import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png'
 
-
-import elasticQueryDate from './elastic_date.js';
-import DatesChange from './MyDatePicker.vue'
-
-
 export default {
   name: 'MyMap',
+  propts: ['mapdata'],
   components: {
     'v-map': Vue2Leaflet.LMap,
     'v-tilelayer': Vue2Leaflet.LTileLayer,
@@ -36,7 +28,6 @@ export default {
     'v-marker': Vue2Leaflet.LMarker,
     'v-popup': Vue2Leaflet.LPopup,
     'v-marker-cluster': Vue2LeafletMarkercluster,
-     DatesChange,
   },
   mounted() {
     setTimeout(() => {
@@ -45,40 +36,13 @@ export default {
         this.clusterOptions = { disableClusteringAtZoom: 11 }
       });
     }, 5000);
-    this.pullElastic();
   },
   methods: {
     click: (e) => console.log("clusterclick", e),
     ready: (e) => console.log('ready', e),
-    async pullElastic () {
-      console.log ('ENTER ASYNC!!!')
-      //let startdate = '2022-01-02T00:00:00Z'
-      //let enddate = '2022-01-02T00:00:02Z'
-      //console.log('heres the dates ' + this.value1.start + ' ' + this.value2)
-      let startdate = this.value1
-      let enddate = this.value1
-      const resp = await elasticQueryDate('ais_v7', startdate, enddate)
-      let i = 0;
-      resp.data.hits.hits.map( (record) => {
-        console.log ('SETTING LOCATIONS')
-        this.locations.push({
-          id: i,
-          latlng: latLng(record._source.data.Latitude, record._source.data.Longitude),
-          text: 'Vessel Name:' + record._source.data.VesselName +'\n Call Sign: '   + record._source.data.CallSign
-            + '\n Vessel Type: ' + record._source.data.VesselType
-        })
-        i++
-        //console.log(record._source.data.Latitude + record._source.data.Longitude + record._source.data.VesselName)
-      });
-      console.log('FINISH ASYNC!!')
-    },
-    changeDates (data){
-      this.value1 = data.value1;
-      this.value2 = data.value2;
-    }
   },
   data () {
-    let locations = []
+    let locations = this.mapdata
     let customicon = icon(Object.assign({},
       Icon.Default.prototype.options,
       {iconUrl, iconRetinaUrl, shadowUrl}

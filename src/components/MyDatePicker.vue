@@ -62,13 +62,12 @@
         },
         value1: '',
         value2: '',
-        //input_two: '2022-01-02T00:00:00Z'
         
       };
     },
     methods: {
       fireEventToParent() {
-        this.$emit('CustomEventDateChanged', [this.value1, this.value2]);
+        this.$emit('CustomEventDatesChanged', [this.value1, this.value2]);
       }
     }
   };
