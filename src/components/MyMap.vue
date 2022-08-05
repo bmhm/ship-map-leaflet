@@ -20,7 +20,7 @@ import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png'
 
 export default {
   name: 'MyMap',
-  propts: ['mapdata'],
+  props: ['mapdata'],
   components: {
     'v-map': Vue2Leaflet.LMap,
     'v-tilelayer': Vue2Leaflet.LTileLayer,

@@ -30,14 +30,15 @@ export default {
   mounted() {
     //this.pullElastic();
   },
+  
+
    methods: {
-     async pullElastic(event) {
+     async pullElastic() {
       console.log ('ENTER ASYNC!!!')
-      //let startdate = '2022-01-02T00:00:00Z'
-      //let enddate = '2022-01-02T00:00:02Z'
-      //console.log('heres the dates ' + this.value1.start + ' ' + this.value2)
-      let startdate = event.value1[0]
-      let enddate = event.value1[0]
+      //let startdate = '2022-01-02'
+      //let enddate = '2022-01-03'
+      let startdate = event[0]
+      let enddate = event[1]
       const resp = await elasticQueryDate('ais_v7', startdate, enddate)
       let i = 0;
       let locations = [];
