@@ -31,12 +31,11 @@ export default {
       //let enddate = '2022-01-03'
       let startdate = event[0]
       let enddate = event[1]
-      let locations = []
       const resp = await elasticQueryDate('ais_v7', startdate, enddate)
       let i = 0;
       resp.data.hits.hits.map( (record) => {
         console.log ('SETTING LOCATIONS')
-        locations.push({
+        this.mapdata.push({
           id: i,
           latlng: latLng(record._source.data.Latitude, record._source.data.Longitude),
           text: 'Vessel Name:' + record._source.data.VesselName +'\n Call Sign: '   + record._source.data.CallSign
@@ -50,7 +49,7 @@ export default {
   },
   data(){
     return{
-      mapdata: this.locations
+      mapdata: []
     }
   }
 }
