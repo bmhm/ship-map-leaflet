@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <nav-bar />
-    <my-time-picker v-on:CustomEventDatesChanged="pullElastic($event)"></my-time-picker>
-    <my-map :mapdata="mapdata"></my-map>/>
+    <my-time-picker @CustomEventDatesChanged="pullElastic($event)"></my-time-picker>
+    <my-map v-bind:mapdata="mapdata"></my-map>
   </div>
 </template>
 
@@ -12,7 +12,6 @@ import NavBar from './components/NavBar.vue'
 import MyTimePicker from './components/MyDatePicker.vue'
 
 import elasticQueryDate from './components/elastic_date.js';
-//import DatesChange from './components/MyDatePicker.vue'
 import { latLng} from 'leaflet';
 
 
@@ -22,12 +21,8 @@ export default {
     'my-map': MyMap,
     'nav-bar': NavBar,
     'my-time-picker':MyTimePicker
-    //DatesChange,
   },
-  mounted() {
-    //this.pullElastic();
-  },
-  
+
 
    methods: {
      async pullElastic(event) {
@@ -48,10 +43,14 @@ export default {
             + '\n Vessel Type: ' + record._source.data.VesselType
         })
         i++
-        //console.log(record._source.data.Latitude + record._source.data.Longitude + record._source.data.VesselName)
+        //console.log(record._source.data.Latitude + record._source.data.Longitude)
       });
       console.log('FINISH ASYNC!!')
-      this.mapdata = this.locations;
+    }
+  },
+  data(){
+    return{
+      mapdata: this.locations
     }
   }
 }

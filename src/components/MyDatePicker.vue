@@ -34,7 +34,7 @@ import moment from 'moment'
 
 
   export default {
-    name: "DatesChange",
+    name: 'MyTimePicker',
     data() {
       return {
         pickerOptions: {

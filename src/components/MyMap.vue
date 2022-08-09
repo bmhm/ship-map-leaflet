@@ -3,7 +3,7 @@
     <v-icondefault></v-icondefault>
     <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
     <v-marker-cluster :options="clusterOptions" @clusterclick="click()" @ready="ready">
-      <v-marker v-for="l in locations" :key="l.id" :lat-lng="l.latlng" :icon="icon">
+      <v-marker v-for="l in mapdata" :key="l.id" :lat-lng="l.latlng" :icon="icon">
         <v-popup :content="l.text"></v-popup>
       </v-marker>
     </v-marker-cluster>
@@ -20,7 +20,9 @@ import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png'
 
 export default {
   name: 'MyMap',
-  props: ['mapdata'],
+  props: {
+    mapdata: Array
+  },
   components: {
     'v-map': Vue2Leaflet.LMap,
     'v-tilelayer': Vue2Leaflet.LTileLayer,
@@ -42,16 +44,14 @@ export default {
     ready: (e) => console.log('ready', e),
   },
   data () {
-    let locations = this.mapdata
     let customicon = icon(Object.assign({},
       Icon.Default.prototype.options,
       {iconUrl, iconRetinaUrl, shadowUrl}
     ))
     return {
-      locations,
       icon: customicon,
       clusterOptions: {},
-      initialLocation: latLng(41.1122176, -100.6346596)
+      initialLocation: latLng(42.36694, -82.89711)
     }
   },
 
