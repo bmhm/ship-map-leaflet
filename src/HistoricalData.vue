@@ -1,7 +1,7 @@
 <template>
   <div id="picker">
-    <my-time-picker @CustomEventDatesChanged="pullElastic($event)"></my-time-picker>
     <my-map v-bind:mapdata="mapdata"></my-map>
+    <my-time-picker @CustomEventDatesChanged="pullElastic($event)"></my-time-picker>
   </div>
 </template>
 

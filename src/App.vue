@@ -4,12 +4,11 @@
     <a href="#month">Last Months Data</a> |
     <a href="#picker">Historical Data</a>
     <component :is="currentView" />
-    <my-map />
   </div>
 </template>
 
 <script>
-import MyMap from './components/MyMap.vue'
+//import MyMap from './components/MyMap.vue'
 //import NavBar from './components/NavBar.vue'
 import LatestData from './latest.vue'
 import LastMonth from './lastmonths.vue'
@@ -24,7 +23,7 @@ const routes = {
 export default {
   name: 'App',
   components: {
-    'my-map': MyMap,
+    //'my-map': MyMap,
     //'nav-bar': NavBar,
   },
 
@@ -36,7 +35,7 @@ export default {
   },
   computed: {
     currentView(){
-      return routes[this.currentPath.slice(1) || 'latest']
+      return routes[this.currentPath.slice(1) || 'latest'] || 'latest'
     }
   },
   mounted(){
