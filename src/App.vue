@@ -6,6 +6,7 @@
     <my-time-picker v-if="this.currentPath.slice(1) === 'picker'" @CustomEventDatesChanged="pullElastic($event)"></my-time-picker>
     <component :is="currentView"/>
     <my-map v-bind:mapdata="mapdata"></my-map>
+    <img src="./assets/niwc.png"/>
   </div>
 </template>
 
@@ -19,6 +20,7 @@ import LastMonth from './lastmonths.vue'
 import MyTimePicker from './components/MyDatePicker.vue'
 import elasticQueryDate from './components/elastic_date.js';
 import { latLng} from 'leaflet';
+
 
 const routes = {
   'latest': LatestData,
@@ -85,5 +87,10 @@ export default {
   html, body {
     height: 100%;
     margin: 0;
+  }
+  img{
+    position: absolute;
+    top: 0px;
+    left: 0px;
   }
 </style>
