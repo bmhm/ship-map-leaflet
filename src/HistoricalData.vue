@@ -9,10 +9,8 @@
 import MyMap from './components/MyMap.vue'
 //import NavBar from './components/NavBar.vue'
 import MyTimePicker from './components/MyDatePicker.vue'
-
 import elasticQueryDate from './components/elastic_date.js';
 import { latLng} from 'leaflet';
-
 export default {
   name: 'HistoricalData',
   components: {
@@ -20,8 +18,6 @@ export default {
     //'nav-bar': NavBar,
     'my-time-picker':MyTimePicker
   },
-
-
    methods: {
      async pullElastic(event) {
       console.log ('ENTER ASYNC!!!')
@@ -48,7 +44,5 @@ export default {
       mapdata: []
     }
   }
-
 }
-
 </script>
