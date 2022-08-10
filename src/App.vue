@@ -1,21 +1,23 @@
 <template>
-  <div id="app">
-    <a href="#latest">Latest Data</a> |
-    <a href="#month">Last Months Data</a> |
-    <a href="#picker">Historical Data</a>
-    <my-time-picker v-if="this.currentPath.slice(1) === 'picker'" @CustomEventDatesChanged="pullElastic($event)"></my-time-picker>
-    <component :is="currentView"/>
-    <my-map v-bind:mapdata="mapdata"></my-map>
-    <img src="./assets/niwc.png"/>
-  </div>
+<div id="app">
+<div id="ghettoNavBar">
+<img src="./assets/niwc.png"/>
+<a href="#latest">Latest Data</a> |
+<a href="#month">Last Months Data</a> |
+<a href="#picker">Historical Data</a>
+</div>
+<my-time-picker v-if="this.currentPath.slice(1) === 'picker'" @CustomEventDatesChanged="pullElastic($event)"></my-time-picker>
+<component :is="currentView"/>
+<my-map v-bind:mapdata="mapdata" style="padding-top:100px"></my-map>
+</div>
 </template>
+
+
 
 <script>
 import MyMap from './components/MyMap.vue'
-//import NavBar from './components/NavBar.vue'
 import LatestData from './latest.vue'
 import LastMonth from './lastmonths.vue'
-//import HistoricalData from './HistoricalData.vue';
 
 import MyTimePicker from './components/MyDatePicker.vue'
 import elasticQueryDate from './components/elastic_date.js';
@@ -30,7 +32,6 @@ export default {
   name: 'App',
   components: {
     'my-map': MyMap,
-    //'nav-bar': NavBar,
     'my-time-picker':MyTimePicker
   },
   data(){
@@ -92,5 +93,13 @@ export default {
     position: absolute;
     top: 0px;
     left: 0px;
+    padding-bottom: 100px;
   }
+
+#ghettoNavBar{
+padding-bottom: 108px;
+}
+
+
+  
 </style>
